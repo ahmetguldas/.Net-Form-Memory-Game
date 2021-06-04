@@ -21,6 +21,7 @@ namespace EsiniBulGame
         {
             InitializeComponent();
             KartlariDiz();
+
         }
 
         private void KartlariDiz()
