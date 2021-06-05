@@ -21,6 +21,7 @@ namespace EsiniBulGame
         int[] resimHavuzu;
         int[] resimler;
         List<PictureBox> acilanlar;
+        List<PictureBox> kartlar;
         readonly ZorlukSeviye _zorlukSeviye;
 
         public int KartAdet => satirAdet * sutunAdet;
@@ -32,6 +33,22 @@ namespace EsiniBulGame
             acilanlar = new List<PictureBox>();
             ImageHavuzunuDoldur();
             KartlariDiz();
+            KartlariKisaSureliGoster();
+        }
+
+        private void KartlariKisaSureliGoster()
+        {
+            foreach (PictureBox pictureBox in kartlar)
+            {
+                KartiAc(pictureBox);
+            }
+
+            Thread.Sleep(2000); //todo: sure kart adedine gore ayarlanabiliyor.
+
+            foreach (PictureBox pictureBox in kartlar)
+            {
+                KartiKapat(pictureBox);
+            }
         }
 
         private void SeviyeAyarla()
@@ -71,6 +88,8 @@ namespace EsiniBulGame
         {
             ResimleriDoldur();
 
+            kartlar = new List<PictureBox>();
+
             pnlKartlar.Width = sutunAdet * (kartBoyut + kartArasi) - kartArasi;
             pnlKartlar.Height = satirAdet * (kartBoyut + kartArasi) - kartArasi;
             ClientSize = new Size(pnlKartlar.Width + 20, pnlKartlar.Height + 20);
@@ -78,6 +97,7 @@ namespace EsiniBulGame
             for (int i = 0; i < KartAdet; i++)
             {
                 PictureBox pb = new PictureBox();
+                kartlar.Add(pb);
                 pb.Tag = i;
                 pb.Click += Pb_Click;
                 pb.SizeMode = PictureBoxSizeMode.Zoom;
@@ -105,10 +125,7 @@ namespace EsiniBulGame
                 AcikKartlariKapat();
             }
             acilanlar.Add(pb);
-            int index = (int)pb.Tag;
-            int resimNo = resimler[index];
-            pb.Image = (Bitmap)Resources.ResourceManager.GetObject("_" + resimNo);
-            pb.Refresh();
+            KartiAc(pb);
 
             if (acilanlar.Count == 2 && AcilanlarAyniysa())
             {
@@ -117,6 +134,19 @@ namespace EsiniBulGame
             }
 
 
+        }
+
+        void KartiAc(PictureBox pb)
+        {
+            int index = (int)pb.Tag;
+            int resimNo = resimler[index];
+            pb.Image = (Bitmap)Resources.ResourceManager.GetObject("_" + resimNo);
+            pb.Refresh();
+        }
+
+        private void KartiKapat(PictureBox pb)
+        {
+            pb.Image = Resources.block;
         }
 
         private bool AcilanlarAyniysa()
@@ -140,7 +170,7 @@ namespace EsiniBulGame
         {
             foreach (PictureBox pictureBox in acilanlar)
             {
-                pictureBox.Image = Resources.block;
+                KartiKapat(pictureBox);
             }
             acilanlar.Clear();
         }
@@ -148,6 +178,11 @@ namespace EsiniBulGame
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             Owner.Show();
+        }
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+            KartlariKisaSureliGoster();
         }
     }
 }
