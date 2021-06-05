@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -19,10 +20,12 @@ namespace EsiniBulGame
         int kartArasi = 5;
         int[] resimHavuzu;
         int[] resimler;
+        List<PictureBox> acilanlar;
         public int KartAdet => satirAdet * sutunAdet;
         public Form1()
         {
             InitializeComponent();
+            acilanlar = new List<PictureBox>();
             ImageHavuzunuDoldur();
             KartlariDiz();
 
@@ -53,8 +56,10 @@ namespace EsiniBulGame
             for (int i = 0; i < KartAdet; i++)
             {
                 PictureBox pb = new PictureBox();
+                pb.Tag = i;
+                pb.Click += Pb_Click;
                 pb.SizeMode = PictureBoxSizeMode.Zoom;
-                pb.Image = (Bitmap)Resources.ResourceManager.GetObject("_" + resimler[i]);
+                pb.Image = Resources.block;
                 pb.BackColor = Color.Gainsboro;
                 pb.Width = kartBoyut;
                 pb.Height = kartBoyut;
@@ -62,6 +67,60 @@ namespace EsiniBulGame
                 pb.Top = i / sutunAdet * (kartBoyut + kartArasi);
                 pnlKartlar.Controls.Add(pb);
             }
+        }
+
+        private void Pb_Click(object sender, EventArgs e)
+        {
+            PictureBox pb = (PictureBox)sender;
+
+            if (acilanlar.Count == 1 && pb==acilanlar[0])
+            {
+                return;
+            }
+
+            if (acilanlar.Count == 2)
+            {
+                AcikKartlariKapat();
+            }
+            acilanlar.Add(pb);
+            int index = (int)pb.Tag;
+            int resimNo = resimler[index];
+            pb.Image = (Bitmap)Resources.ResourceManager.GetObject("_" + resimNo);
+            pb.Refresh();
+
+            if (acilanlar.Count == 2 && AcilanlarAyniysa())
+            {
+                Thread.Sleep(500);
+                AcikKartlariGizle();
+            }
+
+
+        }
+
+        private bool AcilanlarAyniysa()
+        {
+            int index1 = (int)acilanlar[0].Tag;
+            int index2 = (int)acilanlar[1].Tag;
+            return resimler[index1] == resimler[index2];
+            
+        }
+
+        private void AcikKartlariGizle()
+        {
+            foreach (PictureBox pictureBox in acilanlar)
+            {
+                pictureBox.Hide();
+            }
+            acilanlar.Clear();
+        }
+
+        private void AcikKartlariKapat()
+        {
+            foreach (PictureBox pictureBox in acilanlar)
+            {
+                pictureBox.Image = Resources.block;
+            }
+            acilanlar.Clear();
         }
     }
 }
