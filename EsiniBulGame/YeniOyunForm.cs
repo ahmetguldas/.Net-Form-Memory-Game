@@ -24,5 +24,10 @@ namespace EsiniBulGame
             Form1 frmOyun = new Form1(zs);
             frmOyun.Show(this);
         }
+
+        private void btnOyunuKapat_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
