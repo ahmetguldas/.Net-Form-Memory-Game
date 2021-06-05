@@ -35,7 +35,7 @@ namespace EsiniBulGame
             // 
             // pnlKartlar
             // 
-            this.pnlKartlar.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.pnlKartlar.BackColor = System.Drawing.Color.Gray;
             this.pnlKartlar.Location = new System.Drawing.Point(21, 21);
             this.pnlKartlar.Margin = new System.Windows.Forms.Padding(12);
             this.pnlKartlar.Name = "pnlKartlar";
