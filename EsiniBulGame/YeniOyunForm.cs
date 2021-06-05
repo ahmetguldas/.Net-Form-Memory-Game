@@ -17,9 +17,12 @@ namespace EsiniBulGame
             InitializeComponent();
         }
 
-        private void YeniOyunForm_Load(object sender, EventArgs e)
+        private void btnOyunuBaslat_Click(object sender, EventArgs e)
         {
-
+            ZorlukSeviye zs = rbtnKolay.Checked ? ZorlukSeviye.Kolay : rbtnOrta.Checked ? ZorlukSeviye.Orta : ZorlukSeviye.Zor;
+            Hide();
+            Form1 frmOyun = new Form1(zs);
+            frmOyun.Show(this);
         }
     }
 }

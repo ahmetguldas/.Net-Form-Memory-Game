@@ -61,6 +61,7 @@
     <Compile Include="YeniOyunForm.Designer.cs">
       <DependentUpon>YeniOyunForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ZorlukSeviye.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

@@ -61,41 +61,41 @@ namespace EsiniBulGame
             this.btnOyunuBaslat.TabIndex = 1;
             this.btnOyunuBaslat.Text = "OYUNU BASLAT";
             this.btnOyunuBaslat.UseVisualStyleBackColor = true;
+            this.btnOyunuBaslat.Click += new System.EventHandler(this.btnOyunuBaslat_Click);
             // 
             // rbtnKolay
             // 
             this.rbtnKolay.AutoSize = true;
+            this.rbtnKolay.Checked = true;
             this.rbtnKolay.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnKolay.Location = new System.Drawing.Point(82, 78);
+            this.rbtnKolay.Location = new System.Drawing.Point(42, 78);
             this.rbtnKolay.Name = "rbtnKolay";
-            this.rbtnKolay.Size = new System.Drawing.Size(176, 48);
+            this.rbtnKolay.Size = new System.Drawing.Size(263, 48);
             this.rbtnKolay.TabIndex = 0;
             this.rbtnKolay.TabStop = true;
-            this.rbtnKolay.Text = "KOLAY";
+            this.rbtnKolay.Text = "KOLAY(4x4)";
             this.rbtnKolay.UseVisualStyleBackColor = true;
             // 
             // rbtnOrta
             // 
             this.rbtnOrta.AutoSize = true;
             this.rbtnOrta.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnOrta.Location = new System.Drawing.Point(82, 164);
+            this.rbtnOrta.Location = new System.Drawing.Point(42, 164);
             this.rbtnOrta.Name = "rbtnOrta";
-            this.rbtnOrta.Size = new System.Drawing.Size(156, 48);
+            this.rbtnOrta.Size = new System.Drawing.Size(243, 48);
             this.rbtnOrta.TabIndex = 0;
-            this.rbtnOrta.TabStop = true;
-            this.rbtnOrta.Text = "ORTA";
+            this.rbtnOrta.Text = "ORTA(6x6)";
             this.rbtnOrta.UseVisualStyleBackColor = true;
             // 
             // rbtnZor
             // 
             this.rbtnZor.AutoSize = true;
             this.rbtnZor.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnZor.Location = new System.Drawing.Point(82, 250);
+            this.rbtnZor.Location = new System.Drawing.Point(42, 250);
             this.rbtnZor.Name = "rbtnZor";
-            this.rbtnZor.Size = new System.Drawing.Size(131, 48);
+            this.rbtnZor.Size = new System.Drawing.Size(218, 48);
             this.rbtnZor.TabIndex = 0;
-            this.rbtnZor.TabStop = true;
-            this.rbtnZor.Text = "ZOR";
+            this.rbtnZor.Text = "ZOR(8x8)";
             this.rbtnZor.UseVisualStyleBackColor = true;
             // 
             // YeniOyunForm
@@ -108,7 +108,6 @@ namespace EsiniBulGame
             this.Name = "YeniOyunForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Yeni Oyun Esini Bul";
-            this.Load += new System.EventHandler(this.YeniOyunForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

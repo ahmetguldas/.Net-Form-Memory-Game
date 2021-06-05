@@ -21,14 +21,36 @@ namespace EsiniBulGame
         int[] resimHavuzu;
         int[] resimler;
         List<PictureBox> acilanlar;
+        readonly ZorlukSeviye _zorlukSeviye;
+
         public int KartAdet => satirAdet * sutunAdet;
-        public Form1()
+        public Form1(ZorlukSeviye zorlukSeviye)
         {
+            _zorlukSeviye = zorlukSeviye;
+            SeviyeAyarla();
             InitializeComponent();
             acilanlar = new List<PictureBox>();
             ImageHavuzunuDoldur();
             KartlariDiz();
+        }
 
+        private void SeviyeAyarla()
+        {
+            switch (_zorlukSeviye)
+            {
+                case ZorlukSeviye.Kolay:
+                    satirAdet = sutunAdet = 4;
+                    break;
+                case ZorlukSeviye.Orta:
+                    satirAdet = sutunAdet = 6;
+                    break;
+                case ZorlukSeviye.Zor:
+                    satirAdet = sutunAdet = 8;
+                    break;
+                default:
+                    throw new Exception("Olmayan bir seviye secimi yapildi.");
+                    break;
+            }
         }
 
         private void ImageHavuzunuDoldur()
@@ -73,7 +95,7 @@ namespace EsiniBulGame
         {
             PictureBox pb = (PictureBox)sender;
 
-            if (acilanlar.Count == 1 && pb==acilanlar[0])
+            if (acilanlar.Count == 1 && pb == acilanlar[0])
             {
                 return;
             }
@@ -102,7 +124,7 @@ namespace EsiniBulGame
             int index1 = (int)acilanlar[0].Tag;
             int index2 = (int)acilanlar[1].Tag;
             return resimler[index1] == resimler[index2];
-            
+
         }
 
         private void AcikKartlariGizle()
@@ -121,6 +143,11 @@ namespace EsiniBulGame
                 pictureBox.Image = Resources.block;
             }
             acilanlar.Clear();
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Owner.Show();
         }
     }
 }
