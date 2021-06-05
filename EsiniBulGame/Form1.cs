@@ -35,7 +35,7 @@ namespace EsiniBulGame
                 PictureBox pb = new PictureBox();
                 pb.Width = kartBoyut;
                 pb.Height = kartBoyut;
-                pb.BackColor = Color.Red;
+                pb.BackColor = Color.Pink;
                 pb.Left = i % sutunAdet * (kartBoyut + kartArasi);
                 pb.Top = i / sutunAdet * (kartBoyut + kartArasi);
                 pnlKartlar.Controls.Add(pb);

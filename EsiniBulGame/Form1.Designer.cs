@@ -47,7 +47,7 @@ namespace EsiniBulGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1042, 1043);
+            this.ClientSize = new System.Drawing.Size(1044, 1045);
             this.Controls.Add(this.pnlKartlar);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
