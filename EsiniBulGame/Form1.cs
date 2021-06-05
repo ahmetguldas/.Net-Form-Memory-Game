@@ -38,6 +38,7 @@ namespace EsiniBulGame
 
         private void KartlariKisaSureliGoster()
         {
+            pnlKartlar.Enabled = false;
             foreach (PictureBox pictureBox in kartlar)
             {
                 KartiAc(pictureBox);
@@ -49,6 +50,8 @@ namespace EsiniBulGame
             {
                 KartiKapat(pictureBox);
             }
+            Application.DoEvents();
+            pnlKartlar.Enabled = true;
         }
 
         private void SeviyeAyarla()
